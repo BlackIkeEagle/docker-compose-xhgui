@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo
+
+  xhgui:
+    image: blackikeeagle/php-xhgui:7.1
+    links:
+      - mongo
+
+  nginx:
+    image: blackikeeagle/nginx-xhgui:mainline
+    environment:
+      - VIRTUAL_HOST=xhgui.dev
+    links:
+      - xhgui
+
+  xhguiimport:
+    image: blackikeeagle/php-xhgui
+    command: xhgui-import
+    links:
+      - mongo
