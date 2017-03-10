@@ -5,19 +5,19 @@ services:
     image: mongo
 
   xhguiapp:
-    image: blackikeeagle/php-xhgui:7.1
+    image: dockerwest/php-xhgui:7.1
     links:
       - xhguimongo:mongo
 
   xhguinginx:
-    image: blackikeeagle/nginx-xhgui:mainline
+    image: dockerwest/nginx-xhgui:mainline
     environment:
       - VIRTUAL_HOST=xhgui.dev
     links:
       - xhguiapp:xhgui
 
   xhguiimport:
-    image: blackikeeagle/php-xhgui:7.1
+    image: dockerwest/php-xhgui:7.1
     command: xhgui-import
     links:
       - xhguimongo:mongo
