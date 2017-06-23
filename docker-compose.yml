@@ -21,3 +21,10 @@ services:
     command: xhgui-import
     links:
       - xhguimongo:mongo
+
+  application:
+      volumes:
+        - xhprof:/xhprof
+      
+volumes:
+   xhprof:
