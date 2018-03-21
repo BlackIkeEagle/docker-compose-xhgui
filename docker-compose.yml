@@ -6,27 +6,33 @@ services:
 
   xhguiapp:
     image: dockerwest/php-xhgui:7.1
+    environment:
+      - C_UID=${C_UID:-1000}
+      - C_GID=${G_UID:-1000}
     links:
       - xhguimongo:mongo
-
-  xhguinginx:
-    image: dockerwest/nginx-xhgui:mainline
-    environment:
-      - VIRTUAL_HOST=xhgui.dev
-    links:
-      - xhguiapp:xhgui
 
   xhguiimport:
     image: dockerwest/php-xhgui:7.1
     command: xhgui-import
+    environment:
+      - C_UID=${C_UID:-1000}
+      - C_GID=${G_UID:-1000}
     links:
       - xhguimongo:mongo
     volumes:
       - xhprof:/xhprof
 
+  xhguinginx:
+    image: dockerwest/nginx-xhgui:mainline
+    environment:
+      - VIRTUAL_HOST=xhgui.${BASEHOST}
+    links:
+      - xhguiapp:xhgui
+
   application:
       volumes:
         - xhprof:/xhprof
-      
+
 volumes:
    xhprof:
