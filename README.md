@@ -1,8 +1,8 @@
 xhgui docker compose
 ====================
 
-Sample docker-compose to use in your projects to visualize your profiling data
-of your running application
+Addon for your docker compose environment to support xhprof profiling of your
+PHP applicaitons.
 
 License
 -------
