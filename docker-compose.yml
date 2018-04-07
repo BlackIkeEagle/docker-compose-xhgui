@@ -31,8 +31,10 @@ services:
       - xhguiapp:xhgui
 
   application:
-      volumes:
-        - xhprof:/xhprof
+    environment:
+      - 'PROFILER=xhprof'
+    volumes:
+      - xhprof:/xhprof
 
 volumes:
    xhprof:
