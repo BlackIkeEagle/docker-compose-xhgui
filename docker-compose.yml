@@ -8,7 +8,7 @@ services:
     image: dockerwest/php-xhgui:7.1
     environment:
       - C_UID=${C_UID:-1000}
-      - C_GID=${G_UID:-1000}
+      - C_GID=${C_GID:-1000}
     links:
       - xhguimongo:mongo
 
@@ -17,7 +17,7 @@ services:
     command: xhgui-import
     environment:
       - C_UID=${C_UID:-1000}
-      - C_GID=${G_UID:-1000}
+      - C_GID=${C_GID:-1000}
     links:
       - xhguimongo:mongo
     volumes:
